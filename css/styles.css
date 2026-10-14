@@ -1,0 +1,27 @@
+
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; }
+header { background: #0056b3; color: #fff; padding: 1.5rem 0; text-align: center; }
+nav { background: #004494; color: #fff; display: flex; justify-content: center; padding: 0.5rem; flex-wrap: wrap; }
+nav a { color: #fff; text-decoration: none; padding: 0.5rem 0.65rem; margin: 0 0.2rem; border-radius: 4px; font-size: 0.9rem; transition: background 0.3s; }
+nav a:hover { background: #003377; }
+.container { width: 90%; max-width: 1000px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+h1, h2, h3 { color: #0056b3; }
+.equation { background: #e9ecef; padding: 1rem; border-left: 4px solid #0056b3; font-family: 'Courier New', Courier, monospace; overflow-x: auto; font-size: 1.1em;}
+.resource-box { border: 1px solid #ccc; padding: 1rem; margin: 1.5rem 0; border-radius: 8px; background: #fafafa; }
+canvas { width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto 1rem; }
+.controls { margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.control-group { display: flex; flex-direction: column; align-items: center; }
+.control-group input { width: min(240px, 80vw); }
+.simulation-results { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+.status-message { color: #8b1e1e; font-weight: 600; }
+.habitat-diagram { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; background: #fff; border: 1px solid #ccc; }
+.habitat-ring { fill: none; stroke: #333; stroke-width: 3; }
+.habitat-axis { fill: #c62828; }
+.radius-vector { color: #1565c0; stroke: #1565c0; stroke-width: 2.5; }
+.centripetal-vector { color: #2e7d32; stroke: #2e7d32; stroke-width: 3; }
+.rotation-path { color: #ef6c00; fill: none; stroke: #ef6c00; stroke-width: 2; stroke-dasharray: 5 4; }
+.diagram-label, .diagram-equation { font-family: 'Segoe UI', Tahoma, sans-serif; fill: #222; font-size: 13px; }
+.diagram-equation { font-family: 'Courier New', Courier, monospace; font-size: 16px; font-weight: 700; }
+video, iframe { width: 100%; max-width: 800px; aspect-ratio: 16 / 9; height: auto; display: block; margin: 0 auto; border: 0; }
+footer { text-align: center; padding: 1rem 0; background: #333; color: #fff; margin-top: 2rem; }
+.bibliography { font-size: 0.9em; border-top: 1px solid #ccc; padding-top: 1rem; margin-top: 2rem; }

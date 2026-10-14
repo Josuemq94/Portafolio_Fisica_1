@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 4: Llantas F1 - Portafolio de Física</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Portafolio de Evidencias - Física I</h1>
+        <p>Aplicaciones de Cinemática y Dinámica en el Desarrollo de Software</p>
+    </header>
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="tema1.html">1. Rastreo y navegación de un dron de reparto</a>
+        <a href="tema2.html">2. Salto del personaje y gravedad</a>
+        <a href="tema3.html">3. Gravedad artificial por rotación</a>
+        <a href="tema4.html">4. Llantas F1: temperatura y agarre</a>
+        <a href="tema5.html">5. Resorte virtual háptico</a>
+    </nav>
+    <div class="container">
+        <h2>Tema 4: Llantas de Fórmula 1: la ventana de temperatura y el agarre</h2>
+<h3>Caso de Uso en Ingeniería de Software</h3>
+<p><strong>Contexto y Sistema:</strong> En el desarrollo de simuladores de automovilismo profesional y juegos (como <em>Assetto Corsa</em> o software interno de escuderías), el modelo de neumáticos es el núcleo de la simulación de conducción.</p>
+<p><strong>Concepto físico aplicado (dinámica y fricción):</strong> En el modelo de Coulomb, la fricción estática se ajusta hasta un máximo μ<sub>s</sub>N antes de que la llanta deslice; durante el deslizamiento se aproxima con μ<sub>k</sub>N. El peso del auto sobre una superficie horizontal contribuye a la normal N. En un neumático real, el agarre también depende de la temperatura y la deformación; la fuerza lateral máxima no crece en proporción directa a la carga vertical.</p>
+<div class="equation">0 ≤ F<sub>s</sub> ≤ μ<sub>s</sub>N &nbsp;&nbsp; F<sub>k</sub> = μ<sub>k</sub>N<br>F<sub>lateral,máx</sub> = μ(N,T)N &nbsp;&nbsp; μ(N) = μ<sub>ref</sub>(N/N<sub>ref</sub>)<sup>s−1</sup>, 0 &lt; s &lt; 1</div>
+<p><strong>Justificación:</strong> En un simulador, fijar μ no reproduciría la pérdida y recuperación de agarre con la temperatura. Además, usar μ constante haría que duplicar N duplicara exactamente la fuerza máxima. Una dependencia sublineal de μ respecto a N representa de forma didáctica la sensibilidad a la carga observada en neumáticos: al aumentar la carga, la fuerza máxima aumenta, pero menos que proporcionalmente. La respuesta es más realista que una curva de agarre guionizada; el modelo simplificado no reemplaza un modelo completo de neumático.</p>
+<p>Por ejemplo, para s = 0,9, si N se duplica, F<sub>lateral,máx</sub> aumenta por un factor 2<sup>0,9</sup> ≈ 1,87, no por 2. En el piso, N ≈ mg solo si no hay aceleración vertical y se ignoran otras fuerzas verticales.</p>
+<div class="resource-box">
+    <h3>Visualización de datos: coeficiente de agarre vs. temperatura</h3>
+    <p>Modelo ilustrativo de μ<sub>s</sub>(T) para mostrar una ventana de operación; la curva no es telemetría ni una curva publicada de un compuesto comercial.</p>
+    <canvas id="tireChart" aria-label="Gráfica del coeficiente de agarre simplificado en función de la temperatura del neumático"></canvas>
+    <p id="tireChartStatus" class="status-message" role="alert" hidden></p>
+    <p><small><em>Fuente de datos: elaboración propia; puntos calculados con el modelo educativo μ<sub>s</sub>(T) = 1,2 − 0,0003(T − 90 °C)², limitado a 0,4. El máximo ilustrativo ocurre a 90 °C; no representa datos de una escudería ni del modelo Magic Formula.</em></small></p>
+</div>
+<div class="bibliography">
+    <h4>Referencias:</h4>
+    <p>[1] Sears, F., Zemansky, M., Young, H., & Freedman, R. (2013). <em>Física universitaria</em> (13a ed., Vol. 1). Pearson. (Fricción estática, fricción cinética y fuerza normal).</p>
+</div>
+<script src="../js/tema4.js"></script>
+
+    </div>
+    <footer>
+        <p>&copy; 2026 Josue Antonio Morales Quirós - Física I (FUN-18)</p>
+    </footer>
+</body>
+</html>

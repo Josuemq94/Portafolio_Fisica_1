@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 1: Dron de Reparto - Portafolio de Física</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Portafolio de Evidencias - Física I</h1>
+        <p>Aplicaciones de Cinemática y Dinámica en el Desarrollo de Software</p>
+    </header>
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="tema1.html">1. Rastreo y navegación de un dron de reparto</a>
+        <a href="tema2.html">2. Salto del personaje y gravedad</a>
+        <a href="tema3.html">3. Gravedad artificial por rotación</a>
+        <a href="tema4.html">4. Llantas F1: temperatura y agarre</a>
+        <a href="tema5.html">5. Resorte virtual háptico</a>
+    </nav>
+    <div class="container">
+        <h2>Tema 1: Rastreo y navegación de un dron de reparto</h2>
+<h3>Caso de Uso en Ingeniería de Software</h3>
+<p><strong>Contexto y Sistema:</strong> Los algoritmos de navegación y seguimiento de drones de reparto autónomos, como los utilizados en <em>Amazon Prime Air</em>, no operan mediante simples líneas rectas entre puntos estáticos. Requieren perfilar continuamente la posición, velocidad y aceleración en dos o tres dimensiones para asegurar rutas óptimas, calcular el tiempo de llegada y evadir obstáculos dinámicos.</p>
+<p><strong>Concepto Físico Aplicado (Cinemática 2D):</strong> En cada tramo de aceleración constante, la posición y la velocidad del dron se calculan por separado en los ejes horizontal (x) y vertical (y):</p>
+<div class="equation">
+    x(t) = x<sub>0</sub> + v<sub>0x</sub>t + ½a<sub>x</sub>t&sup2;<br>
+    y(t) = y<sub>0</sub> + v<sub>0y</sub>t + ½a<sub>y</sub>t&sup2;<br>
+    v<sub>x</sub>(t) = v<sub>0x</sub> + a<sub>x</sub>t<br>
+    v<sub>y</sub>(t) = v<sub>0y</sub> + a<sub>y</sub>t
+</div>
+<p>Los subíndices 0 indican los valores al inicio del tramo; la aceleración es el cambio de velocidad por unidad de tiempo. Al cambiar el tramo, se conserva la posición y la velocidad alcanzadas y se actualiza la aceleración.</p>
+<p><strong>Justificación:</strong> Modelar estas variables de forma continua y vectorial, en lugar de precalcular rutas fijas (waypoints estáticos), permite que el sistema de control (controladores PID) del dron ajuste los motores en tiempo real ante ráfagas de viento o pérdida de altitud. Una ruta precalculada sin física fallaría al no considerar la inercia del dron, resultando en oscilaciones severas o accidentes al intentar giros abruptos.</p>
+<div class="resource-box">
+    <h3>Visualización de datos: perfiles cinemáticos de una ruta 2D</h3>
+    <p>Ejemplo didáctico, no telemetría real. Parte del origen y del reposo (x<sub>0</sub> = y<sub>0</sub> = 0; v<sub>0x</sub> = v<sub>0y</sub> = 0). La aceleración por tramos es: de 0 a 2 s, a<sub>x</sub> = 2 y a<sub>y</sub> = 1 m/s²; de 2 a 4 s, a<sub>x</sub> = 0 y a<sub>y</sub> = −1 m/s²; de 4 a 6 s, a<sub>x</sub> = −2 y a<sub>y</sub> = 0 m/s². Las gráficas muestran posición, velocidad y aceleración de cada eje, con unidades.</p>
+    <h4>Posición</h4>
+    <canvas id="dronChart"></canvas>
+    <h4>Velocidad</h4>
+    <canvas id="dronVelocityChart"></canvas>
+    <h4>Aceleración</h4>
+    <canvas id="dronAccelerationChart"></canvas>
+    <p id="dronChartStatus" class="status-message" role="alert" hidden></p>
+    <p><small><em>Fuente de datos: elaboración propia; valores calculados en intervalos de 0,25 s con las ecuaciones de MRUA y los tramos declarados arriba. No son datos de telemetría de un dron real.</em></small></p>
+</div>
+<div class="bibliography">
+    <h4>Referencias:</h4>
+    <p>[1] Sears, F., Zemansky, M., Young, H., & Freedman, R. (2013). <em>Física universitaria</em> (13a ed., Vol. 1). Pearson. (Temas: Cinemática 2D y Vectores).</p>
+    <p>[2] Amazon Prime Air. <a href="https://www.amazon.com/primeair" target="_blank" rel="noopener noreferrer">Información del servicio y sistema de reparto con drones</a>. Consulta: 2026.</p>
+</div>
+<script src="../js/tema1.js"></script>
+
+    </div>
+    <footer>
+        <p>&copy; 2026 Josue Antonio Morales Quirós - Física I (FUN-18)</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 3: Hábitat Espacial - Portafolio de Física</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Portafolio de Evidencias - Física I</h1>
+        <p>Aplicaciones de Cinemática y Dinámica en el Desarrollo de Software</p>
+    </header>
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="tema1.html">1. Rastreo y navegación de un dron de reparto</a>
+        <a href="tema2.html">2. Salto del personaje y gravedad</a>
+        <a href="tema3.html">3. Gravedad artificial por rotación</a>
+        <a href="tema4.html">4. Llantas F1: temperatura y agarre</a>
+        <a href="tema5.html">5. Resorte virtual háptico</a>
+    </nav>
+    <div class="container">
+        <h2>Tema 3: Gravedad artificial por rotación en hábitats espaciales</h2>
+<h3>Caso de Uso en Ingeniería de Software</h3>
+<p><strong>Contexto y Sistema:</strong> Simuladores espaciales (como <em>Kerbal Space Program</em>) y software de modelado estructural en ingeniería aeroespacial necesitan calcular con precisión el estrés mecánico de hábitats rotatorios (ej. el concepto del Cilindro de O'Neill).</p>
+<p><strong>Concepto físico aplicado (movimiento circular uniforme):</strong> Para una persona en el borde del hábitat, la fuerza normal de la pared proporciona la fuerza neta centrípeta. En el marco giratorio se percibe una gravedad aparente hacia el piso exterior; no es una nueva fuerza gravitatoria.</p>
+<div class="equation">a<sub>c</sub> = v&sup2;/R = &omega;&sup2;R &nbsp;&nbsp; v = &omega;R<br>T = 2&pi;/&omega; &nbsp;&nbsp; f = 1/T &nbsp;&nbsp; &omega; = 2&pi;f</div>
+<p><strong>Justificación:</strong> Modelar la física de rotación permite a los desarrolladores del simulador calcular las fuerzas G dinámicamente en cualquier punto del hábitat sin hardcodear datos. Si el jugador/usuario cambia el tamaño de la estación (R) en el editor de software, el motor recalcula automáticamente la frecuencia angular requerida, garantizando simulaciones físicas y estructurales coherentes.</p>
+<div class="resource-box">
+    <h3>Diagrama propio: hábitat rotatorio y aceleración centrípeta</h3>
+    <svg class="habitat-diagram" viewBox="0 0 520 330" role="img" aria-labelledby="habitatTitle habitatDescription" xmlns="http://www.w3.org/2000/svg">
+        <title id="habitatTitle">Sección de un hábitat espacial rotatorio</title>
+        <desc id="habitatDescription">El hábitat gira alrededor de un eje central. El radio apunta desde el eje hasta el anillo y la aceleración centrípeta apunta desde el anillo hacia el eje.</desc>
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" />
+            </marker>
+        </defs>
+        <circle cx="180" cy="145" r="100" class="habitat-ring" />
+        <circle cx="180" cy="145" r="5" class="habitat-axis" />
+        <line x1="180" y1="145" x2="180" y2="45" class="radius-vector" marker-end="url(#arrowhead)" />
+        <line x1="180" y1="45" x2="180" y2="125" class="centripetal-vector" marker-end="url(#arrowhead)" />
+        <path d="M 110 74 A 100 100 0 0 1 180 45" class="rotation-path" marker-end="url(#arrowhead)" />
+        <text x="194" y="100" class="diagram-label">R = 100 m</text>
+        <text x="195" y="135" class="diagram-label">a<tspan baseline-shift="sub">c</tspan> hacia el eje</text>
+        <text x="75" y="89" class="diagram-label">ω, sentido de giro</text>
+        <text x="193" y="164" class="diagram-label">Eje de giro</text>
+        <text x="315" y="72" class="diagram-equation">a<tspan baseline-shift="sub">c</tspan> = ω²R = v²/R</text>
+        <text x="315" y="102" class="diagram-equation">T = 2π/ω</text>
+        <text x="315" y="132" class="diagram-equation">f = 1/T</text>
+        <text x="315" y="188" class="diagram-label">La normal del piso</text>
+        <text x="315" y="208" class="diagram-label">aporta la fuerza</text>
+        <text x="315" y="228" class="diagram-label">centrípeta.</text>
+    </svg>
+    <h4>Caso Numérico para Gravedad Terrestre (1g):</h4>
+    <p>Para simular a_c = 9.81 m/s² en un anillo con R = 100 metros:</p>
+    <ul>
+        <li>Despejamos &omega;: &omega; = &radic;(a_c / R) = &radic;(9.81 / 100) = <strong>0.3132 rad/s</strong>.</li>
+        <li>Convertimos a RPM: RPM = &omega; &times; (60 / 2&pi;) = 0.3132 &times; 9.549 = <strong>2.99 RPM</strong>.</li>
+    </ul>
+    <p>La estación debe girar a aproximadamente 3 revoluciones por minuto.</p>
+    <p><small><em>Diagrama y cálculos: elaboración propia. El esquema no está a escala.</em></small></p>
+</div>
+<div class="bibliography">
+    <h4>Referencias:</h4>
+    <p>[1] Sears, F., Zemansky, M., Young, H., & Freedman, R. (2013). <em>Física universitaria</em> (13a ed., Vol. 1). Pearson. (Movimiento circular y aceleración centrípeta).</p>
+</div>
+
+    </div>
+    <footer>
+        <p>&copy; 2026 Josue Antonio Morales Quirós - Física I (FUN-18)</p>
+    </footer>
+</body>
+</html>

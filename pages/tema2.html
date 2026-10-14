@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 2: Salto en Videojuegos - Portafolio de Física</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Portafolio de Evidencias - Física I</h1>
+        <p>Aplicaciones de Cinemática y Dinámica en el Desarrollo de Software</p>
+    </header>
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="tema1.html">1. Rastreo y navegación de un dron de reparto</a>
+        <a href="tema2.html">2. Salto del personaje y gravedad</a>
+        <a href="tema3.html">3. Gravedad artificial por rotación</a>
+        <a href="tema4.html">4. Llantas F1: temperatura y agarre</a>
+        <a href="tema5.html">5. Resorte virtual háptico</a>
+    </nav>
+    <div class="container">
+        <h2>Tema 2: El salto del personaje: cómo los motores de juego falsean la gravedad</h2>
+<h3>Caso de Uso en Ingeniería de Software</h3>
+<p><strong>Contexto y Sistema:</strong> En motores de videojuegos como <em>Unity</em> o <em>Unreal Engine</em>, el controlador del jugador (Character Controller) rara vez utiliza la gravedad realista (9.81 m/s²) para los saltos. En juegos de plataformas (ej. <em>Super Mario</em> o <em>Celeste</em>), se utilizan modificadores de gravedad para mejorar la jugabilidad ("Game Feel").</p>
+<p><strong>Concepto físico aplicado (caída libre y tiro parabólico):</strong> En el modelo de esta simulación, la aceleración vertical es constante y apunta hacia abajo; el juego puede elegir un valor de gravedad distinto de 9,81 m/s² para ajustar el control. La componente horizontal mantiene velocidad constante.</p>
+<div class="equation">y(t) = y&#8320; + v<sub>0y</sub>t - ½gt&sup2; &nbsp;&nbsp; x(t) = x&#8320; + v&#8320;&#8339;t<br>v<sub>y</sub>(t) = v<sub>0y</sub> - gt &nbsp;&nbsp; t<sub>vuelo</sub> = 2v<sub>0y</sub>/g &nbsp;&nbsp; h<sub>máx</sub> = v<sub>0y</sub>&sup2;/(2g)</div>
+<p><strong>Justificación:</strong> Con esas ecuaciones, el motor puede ajustar por separado la altura, el tiempo en el aire y el alcance horizontal. Una gravedad configurable permite priorizar la respuesta y precisión de los controles frente a una animación rígida; el costo es que el movimiento deja de representar una caída libre terrestre exacta.</p>
+<div class="resource-box">
+    <h3>Simulación Interactiva: Ajuste de Gravedad y Salto</h3>
+    <p>Ajuste el impulso vertical, la gravedad y la velocidad horizontal. La trayectoria y los resultados se recalculan con las ecuaciones mostradas.</p>
+    <canvas id="jumpCanvas" width="600" height="320" aria-label="Trayectoria parabólica dinámica del salto; los ejes muestran la distancia horizontal y la altura en metros"></canvas>
+    <p id="jumpChartStatus" class="status-message" role="alert" hidden></p>
+    <div class="controls">
+        <div class="control-group">
+            <label for="inpV">Impulso vertical inicial: <output id="valV">15,0</output> m/s</label>
+            <input type="range" id="inpV" min="5" max="25" step="0.5" value="15">
+        </div>
+        <div class="control-group">
+            <label for="inpG">Gravedad: <output id="valG">9,8</output> m/s²</label>
+            <input type="range" id="inpG" min="2" max="25" step="0.1" value="9.8">
+        </div>
+        <div class="control-group">
+            <label for="inpVx">Velocidad horizontal: <output id="valVx">6,0</output> m/s</label>
+            <input type="range" id="inpVx" min="1" max="12" step="0.5" value="6">
+        </div>
+    </div>
+    <div class="simulation-results" aria-live="polite">
+        <p>Altura máxima: <strong id="maxHeight">—</strong> m</p>
+        <p>Tiempo de vuelo: <strong id="flightTime">—</strong> s</p>
+        <p>Alcance horizontal: <strong id="range">—</strong> m</p>
+    </div>
+    <p><small><em>Fuente: elaboración propia; trayectoria calculada en el navegador con aceleración constante y sin resistencia del aire.</em></small></p>
+</div>
+<div class="bibliography">
+    <h4>Referencias:</h4>
+    <p>[1] Sears, F., Zemansky, M., Young, H., & Freedman, R. (2013). <em>Física universitaria</em> (13a ed., Vol. 1). Pearson. (Caída libre y movimiento parabólico).</p>
+    <p>[2] Unity Technologies. <a href="https://docs.unity3d.com/Manual/class-PhysicsManager.html" target="_blank" rel="noopener noreferrer">Physics Manager: configuración de la gravedad del proyecto</a>. Consulta: 2026.</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/tema2.js"></script>
+
+    </div>
+    <footer>
+        <p>&copy; 2026 Josue Antonio Morales Quirós - Física I (FUN-18)</p>
+    </footer>
+</body>
+</html>

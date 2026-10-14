@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 5: Control Háptico - Portafolio de Física</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Portafolio de Evidencias - Física I</h1>
+        <p>Aplicaciones de Cinemática y Dinámica en el Desarrollo de Software</p>
+    </header>
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="tema1.html">1. Rastreo y navegación de un dron de reparto</a>
+        <a href="tema2.html">2. Salto del personaje y gravedad</a>
+        <a href="tema3.html">3. Gravedad artificial por rotación</a>
+        <a href="tema4.html">4. Llantas F1: temperatura y agarre</a>
+        <a href="tema5.html">5. Resorte virtual háptico</a>
+    </nav>
+    <div class="container">
+        <h2>Tema 5: El resorte virtual detrás de un control háptico</h2>
+<h3>Caso de Uso en Ingeniería de Software</h3>
+<p><strong>Contexto y Sistema:</strong> Los programadores de interfaces (firmware de periféricos) para mandos de última generación, como el <em>DualSense de PlayStation 5</em>, envían comandos de software a los motores de los gatillos para ofrecer resistencia dinámica, simulando acciones como tensar un arco o accionar un resorte.</p>
+<p><strong>Concepto físico aplicado (ley de Hooke y tercera ley de Newton):</strong> Para representar un resorte ideal, el software calcula una fuerza restauradora proporcional al desplazamiento del gatillo desde su posición de equilibrio. La reacción tiene igual magnitud y dirección opuesta, pero actúa sobre otro cuerpo.</p>
+<div class="equation">F<sub>resorte</sub> = −kx &nbsp;&nbsp; (ley de Hooke)<br>F<sub>gatillo sobre dedo</sub> = −F<sub>dedo sobre gatillo</sub> &nbsp;&nbsp; (tercera ley de Newton)</div>
+<p><strong>Justificación:</strong> Calcular la fuerza en cada actualización del controlador permite que el efecto cambie con el desplazamiento del gatillo; una animación o resistencia fija no representaría la pendiente k de un resorte. El modelo de Hooke es una aproximación ideal y debe limitarse a un rango seguro de fuerza y desplazamiento en un dispositivo real.</p>
+<div class="resource-box">
+    <h3>Multimedia con análisis: efecto háptico de un gatillo adaptativo</h3>
+    <iframe
+        src="https://www.youtube-nocookie.com/embed/7gJLVQy-bvM"
+        title="Adaptive Triggers | PS5 - PlayStation"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    <h4>Análisis del fenómeno</h4>
+    <p><strong>Instante de observación: 0:00–0:19, el clip completo.</strong> La demostración oficial presenta la función de gatillos adaptativos del DualSense. El video no mide ni grafica la fuerza ejercida; por eso la curva contigua es un modelo ideal propio, no un dato extraído del video. En ese modelo, al empezar a presionar desde x = 0, la fuerza restauradora es cero; al aumentar el desplazamiento, su magnitud aumenta según kx y apunta de regreso al equilibrio al liberar el gatillo. La fuerza de reacción de igual magnitud actúa sobre el dedo, no sobre el gatillo.</p>
+    <h4>Curva de fuerza restauradora contra desplazamiento</h4>
+    <p>Curva ideal calculada con k = 8 N/m en el intervalo ilustrativo de 0 a 0,05 m. El desplazamiento real y la fuerza dependen del dispositivo.</p>
+    <canvas id="springChart" aria-label="Gráfica de fuerza restauradora frente al desplazamiento de un resorte virtual"></canvas>
+    <p id="springChartStatus" class="status-message" role="alert" hidden></p>
+    <p><small><em>Fuente de datos de la curva: elaboración propia; valores calculados con la ley de Hooke F = −kx, k = 8 N/m.</em></small></p>
+</div>
+<div class="bibliography">
+    <h4>Referencias:</h4>
+    <p>[1] Sony Interactive Entertainment. <a href="https://www.playstation.com/en-us/accessories/dualsense-wireless-controller/" target="_blank" rel="noopener noreferrer">DualSense wireless controller: haptic feedback y adaptive triggers</a>. Consulta: 2026.</p>
+    <p>[2] Sears, F., Zemansky, M., Young, H., & Freedman, R. (2013). <em>Física universitaria</em> (13a ed., Vol. 1). Pearson. (Ley de Hooke y tercera ley de Newton).</p>
+    <p>[3] PlayStation. <a href="https://www.youtube.com/watch?v=7gJLVQy-bvM" target="_blank" rel="noopener noreferrer"><em>Adaptive Triggers | PS5</em></a> [Video]. YouTube. Duración: 0:19. Consulta: 2026.</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/tema5.js"></script>
+
+    </div>
+    <footer>
+        <p>&copy; 2026 Josue Antonio Morales Quirós - Física I (FUN-18)</p>
+    </footer>
+</body>
+</html>
