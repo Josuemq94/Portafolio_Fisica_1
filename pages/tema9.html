@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 9 — Asistencia gravitatoria: cómo la Voyager ganó velocidad sin gastar combustible</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Portafolio de Evidencias - Física I</h1>
+        <p>Aplicaciones de Física</p>
+    </header>
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="tema1.html">1. Rastreo y navegación de un dron de reparto</a>
+        <a href="tema2.html">2. El salto del personaje y la gravedad</a>
+        <a href="tema3.html">3. Gravedad artificial por rotación</a>
+        <a href="tema4.html">4. Llantas de Fórmula 1: temperatura y agarre</a>
+        <a href="tema5.html">5. Resorte virtual en un control háptico</a>
+        <a href="tema6.html">6. Frenado regenerativo en un vehículo eléctrico</a>
+        <a href="tema7.html">7. El coeficiente de restitución en un motor de videojuego</a>
+        <a href="tema8.html">8. Ruedas de reacción: cómo un satélite se gira sin empujarse contra nada</a>
+        <a href="tema9.html">9. Asistencia gravitatoria: cómo la Voyager ganó velocidad sin gastar combustible</a>
+    </nav>
+    <main class="avance2-page">
+        <h2>Tema 9 : Asistencia gravitatoria: cómo la Voyager ganó velocidad sin gastar combustible</h2>
+        <p class="avance2-note"><strong>Programa del curso:</strong> Módulo 4 — Gravitación, ley de gravitación universal y energía potencial gravitatoria; se aplica también conservación del momento lineal del Módulo 3.</p>
+        <section>
+            <h3>(a) Caso de uso en Ingeniería del Software</h3>
+            <p><strong>Sistemas reales:</strong> <strong>NASA GMAT</strong> permite diseñar y analizar trayectorias; <strong>JPL HORIZONS</strong> proporciona efemérides y vectores de estado. Una asistencia gravitatoria usa la atracción planetaria para cambiar la dirección y, en el marco heliocéntrico, la rapidez de una sonda.</p>
+            <p class="avance2-equation">|F<sub>g</sub>| = GMm/r²; &nbsp; U(r) = −G(Mm/r); &nbsp; E = K + U</p>
+            <p>En el marco del planeta, la interacción gravitatoria es análoga a una colisión elástica sin contacto físico directo: la rapidez asintótica de entrada y salida se conserva, aunque cambia la dirección del vector velocidad. Al pasar al marco del Sol, la sonda intercambia momento lineal con el planeta y puede aumentar su energía y rapidez heliocéntricas:</p>
+            <p class="avance2-equation"><strong>v</strong><sub>helio</sub> = <strong>V</strong><sub>planeta</sub> + <strong>v</strong><sub>∞</sub>; &nbsp; Δε = <strong>V</strong><sub>planeta</sub> · (<strong>v</strong><sub>∞,salida</sub> − <strong>v</strong><sub>∞,entrada</sub>)</p>
+            <p class="avance2-note">Las letras en negrita representan vectores; la fuerza gravitatoria apunta hacia el planeta.</p>
+            <p>La nave intercambia una cantidad minúscula de energía y momento con el planeta; no obtiene energía de la nada ni requiere un encendido de motor para el cambio de trayectoria. El resultado depende de la geometría del encuentro.</p>
+            <p><strong>Ventaja y costo de modelarlo:</strong> precalcular trayectorias interplanetarias como curvas geométricas fijas fallaría ante cambios en las condiciones iniciales o perturbaciones y no permitiría encontrar ventanas de lanzamiento específicas. Integrar numéricamente las ecuaciones de Newton y usar efemérides permite planear encuentros y evaluar el periapsis. El costo es la susceptibilidad al caos determinista y a errores de redondeo de punto flotante que se acumulan en simulaciones largas.</p>
+            <p><strong>Conexiones:</strong> entre encuentros la sonda sigue trayectorias orbitales relacionadas con el movimiento del <a href="tema2.html">Tema 2</a>. Como en el <a href="tema7.html">Tema 7</a>, hay transferencia de momento en una interacción equivalente a una colisión elástica; a diferencia de aquel rebote, aquí ocurre por gravitación de largo alcance, sin contacto físico.</p>
+        </section>
+        <section>
+            <h3>(b) Recurso de apoyo: rapidez heliocéntrica y escape solar</h3>
+            <p>La gráfica usa vectores de estado heliocéntricos diarios de Voyager 2 de JPL HORIZONS, alrededor de sus sobrevuelos de Júpiter, Saturno, Urano y Neptuno. La rapidez se obtiene de v = √(v<sub>x</sub>² + v<sub>y</sub>² + v<sub>z</sub>²); la rapidez de escape local se calcula con v<sub>esc</sub> = √(2μ<sub>☉</sub>/r). La gráfica expresa velocidades en m/s y los cálculos convierten las posiciones de km a m. Las separaciones entre grupos no están representadas a escala temporal.</p>
+            <div class="avance2-chart">
+                <canvas id="graficaVoyager" role="img" aria-label="Gráfica de la rapidez heliocéntrica calculada de Voyager 2 y la rapidez de escape solar local cerca de los sobrevuelos"></canvas>
+                <p id="voyagerChartStatus" class="status-message" role="alert" hidden></p>
+            </div>
+            <p class="avance2-note">Los vectores geométricos originales están en km y km/s, con origen en el Sol y fechas TDB; se convierten a m y m/s (SI) antes de calcular y graficar. Se muestrean días cercanos a cada encuentro; la curva no representa toda la misión ni cada punto es el instante de máximo acercamiento. Los puntos usan colores distintos por planeta; los espacios entre grupos no están a escala temporal. La rapidez de escape es un cálculo derivado de la distancia heliocéntrica de cada muestra.</p>
+            <p class="avance2-note"><strong>Fuentes de la figura (APA):</strong> NASA Jet Propulsion Laboratory. (s. f.). <em>JPL Horizons On-Line Ephemeris System</em> [Base de datos de efemérides; Voyager 2, objetivo −32; Sol, centro 500@10; vectores, tabla 2]. Recuperado el 31 de octubre de 2026, de https://ssd.jpl.nasa.gov/api/horizons.api; NASA. (s. f.). <em>Voyager 2</em>. https://science.nasa.gov/mission/voyager/voyager-2/; constantes solares: NASA Jet Propulsion Laboratory. (s. f.). <em>Astrodynamic parameters</em>. https://ssd.jpl.nasa.gov/astro_par.html</p>
+        </section>
+    </main>
+    <footer><p>&copy; 2026 Josue Antonio Morales Quirós - Física I (FUN-18)</p></footer>
+    <script src="../js/tema9.js"></script>
+</body>
+</html>

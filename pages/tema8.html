@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 8 — Ruedas de reacción: cómo un satélite se gira sin empujarse contra nada</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Portafolio de Evidencias - Física I</h1>
+        <p>Aplicaciones de Física</p>
+    </header>
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="tema1.html">1. Rastreo y navegación de un dron de reparto</a>
+        <a href="tema2.html">2. El salto del personaje y la gravedad</a>
+        <a href="tema3.html">3. Gravedad artificial por rotación</a>
+        <a href="tema4.html">4. Llantas de Fórmula 1: temperatura y agarre</a>
+        <a href="tema5.html">5. Resorte virtual en un control háptico</a>
+        <a href="tema6.html">6. Frenado regenerativo en un vehículo eléctrico</a>
+        <a href="tema7.html">7. El coeficiente de restitución en un motor de videojuego</a>
+        <a href="tema8.html">8. Ruedas de reacción: cómo un satélite se gira sin empujarse contra nada</a>
+        <a href="tema9.html">9. Asistencia gravitatoria: cómo la Voyager ganó velocidad sin gastar combustible</a>
+    </nav>
+    <main class="avance2-page">
+        <h2>Tema 8 : Ruedas de reacción: cómo un satélite se gira sin empujarse contra nada</h2>
+        <p class="avance2-note"><strong>Programa del curso:</strong> Módulo 3 — Leyes de conservación; momento angular, torque y equilibrio rotacional.</p>
+        <section>
+            <h3>(a) Caso de uso en Ingeniería del Software</h3>
+            <p><strong>Sistema real:</strong> el simulador de dinámica y actitud <a href="https://github.com/nasa/42" target="_blank" rel="noopener noreferrer">NASA 42</a> modela naves y subsistemas de control; satélites como Hubble emplean ruedas de reacción para modificar su orientación sin expulsar propelente en cada maniobra. El software integra sensores, controladores y actuadores sujetos a límites de velocidad y torque.</p>
+            <p>Sobre un eje fijo, el momento angular es L<sub>z</sub> = Iω. Para el sistema formado por el chasis y la rueda, el torque externo neto es cero, Στ<sub>ext</sub> = dL/dt = 0; por tanto, el momento angular se conserva: L<sub>i</sub> = L<sub>f</sub>.</p>
+            <p class="avance2-equation">L<sub>total,z</sub> = I<sub>sat</sub>ω<sub>sat</sub> + I<sub>rueda</sub>ω<sub>rueda</sub> = constante; &nbsp; τ<sub>motor</sub> = I<sub>rueda</sub>α<sub>rueda</sub></p>
+            <p>El motor ejerce fuerzas y torques internos entre la rueda y el chasis: cambia el momento angular de cada parte, pero no el momento total del sistema. El torque de reacción hace que el chasis gire en sentido opuesto.</p>
+            <p><strong>Ventaja y costo de modelarlo:</strong> interpolar cuaterniones puede suavizar una orientación, pero no basta: ignora la inercia real del chasis (I<sub>sat</sub>) y no predice la respuesta a torques. Integrar τ = Iα en el software de vuelo permite controlar la orientación y lograr apuntamiento de alta precisión con inercia y límites reales. El costo computacional incluye integrar el estado y resolver acoplamientos giroscópicos tridimensionales, además de manejar ruido y estabilidad numérica.</p>
+            <p><strong>Conexión:</strong> las variables angulares y el movimiento circular del <a href="tema3.html">Tema 3</a> son la base cinemática; aquí se añade el momento angular y el torque.</p>
+        </section>
+        <section>
+            <h3>(b) Recurso de apoyo: diagrama vectorial propio</h3>
+            <svg class="avance2-diagram" viewBox="0 0 820 440" role="img" aria-labelledby="wheelTitle wheelDesc">
+                <title id="wheelTitle">Intercambio de momento angular entre satélite y rueda de reacción</title>
+                <desc id="wheelDesc">Una rueda acelera en un sentido dentro del chasis y el satélite reacciona en el sentido opuesto. El diagrama muestra los torques y la conservación del momento angular.</desc>
+                <defs>
+                    <marker id="wheelArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#fbbf24"/></marker>
+                    <marker id="satArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#4ade80"/></marker>
+                </defs>
+                <rect width="820" height="440" rx="12" fill="#0f172a"/>
+                <text x="410" y="34" fill="#f8fafc" text-anchor="middle" font-size="17" font-weight="bold">SATÉLITE + RUEDA: INTERCAMBIO DE MOMENTO ANGULAR</text>
+                <rect x="235" y="100" width="350" height="220" rx="18" fill="#334155" stroke="#cbd5e1" stroke-width="3"/>
+                <text x="410" y="128" fill="#e2e8f0" text-anchor="middle" font-size="15">Chasis del satélite · I_sat</text>
+                <circle cx="410" cy="220" r="64" fill="#475569" stroke="#f59e0b" stroke-width="5"/>
+                <circle cx="410" cy="220" r="9" fill="#fbbf24"/>
+                <path d="M375 180 A48 48 0 0 1 445 180" fill="none" stroke="#fbbf24" stroke-width="5" marker-end="url(#wheelArrow)"/>
+                <text x="410" y="305" fill="#fde68a" text-anchor="middle" font-size="14">Rueda: L_rueda, ω_rueda y τ_motor</text>
+                <path d="M565 91 A165 165 0 0 0 255 91" fill="none" stroke="#4ade80" stroke-width="5" marker-end="url(#satArrow)"/>
+                <text x="410" y="72" fill="#86efac" text-anchor="middle" font-size="14">Satélite: L_sat, ω_sat y −τ_motor (sentido opuesto)</text>
+                <line x1="615" y1="165" x2="765" y2="165" stroke="#4ade80" stroke-width="4" marker-end="url(#satArrow)"/>
+                <text x="690" y="153" fill="#86efac" text-anchor="middle" font-size="13">L_sat, −τ_motor</text>
+                <line x1="765" y1="220" x2="615" y2="220" stroke="#fbbf24" stroke-width="4" marker-end="url(#wheelArrow)"/>
+                <text x="690" y="244" fill="#fde68a" text-anchor="middle" font-size="13">L_rueda, τ_motor</text>
+                <rect x="35" y="335" width="750" height="92" rx="8" fill="#1e293b" stroke="#475569"/>
+                <text x="410" y="360" fill="#38bdf8" text-anchor="middle" font-size="15">Στ_ext = dL/dt = 0 · L_i = L_f</text>
+                <text x="410" y="385" fill="#f8fafc" text-anchor="middle" font-size="14">L_z = Iω · L_total = I_sat ω_sat + I_rueda ω_rueda</text>
+                <text x="410" y="410" fill="#cbd5e1" text-anchor="middle" font-size="13">El motor ejerce torques internos: L_total se conserva.</text>
+            </svg>
+            <div class="avance2-controls">
+                <label for="wheelSpeed">Velocidad ilustrativa de la rueda:
+                    <output id="wheelSpeedValue">3 000</output> rpm
+                </label>
+                <input type="range" id="wheelSpeed" min="0" max="6000" step="100" value="3000">
+            </div>
+            <p id="satelliteResponse" class="avance2-note" aria-live="polite"></p>
+            <p class="avance2-note">Modelo de un eje con I<sub>sat</sub> = 100 kg·m² e I<sub>rueda</sub> = 0,1 kg·m², iniciado con momento angular total cero. Las inercias son supuestos didácticos, no datos del Webb.</p>
+            <h3>Saturación y desaturación</h3>
+            <p>Al alcanzar el límite de velocidad angular ω<sub>max</sub>, el controlador ya no permite acelerar la rueda en esa dirección: α = 0 y, en este modelo, τ<sub>motor</sub> = Iα = 0 para ese comando. La rueda queda saturada y no puede seguir almacenando momento angular; el software debe activar propulsores para aplicar un torque externo real τ<sub>ext</sub> y desaturarla (los magnetorquers solo sirven si hay un campo magnético utilizable).</p>
+            <p class="avance2-note"><strong>Fuentes técnicas:</strong> <a href="https://github.com/nasa/42" target="_blank" rel="noopener noreferrer">NASA 42</a> (simulador de dinámica de naves); <a href="https://www.nasa.gov/smallsat-institute/sst-soa/guidance-navigation-and-control/" target="_blank" rel="noopener noreferrer">NASA Small Spacecraft Systems Virtual Institute, Guidance, Navigation, and Control</a> (ruedas de reacción, torquers magnéticos y propulsores). El diagrama es una elaboración propia de un modelo de un solo eje.</p>
+        </section>
+    </main>
+    <footer><p>&copy; 2026 Josue Antonio Morales Quirós - Física I (FUN-18)</p></footer>
+    <script src="../js/tema8.js"></script>
+</body>
+</html>

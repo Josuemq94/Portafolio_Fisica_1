@@ -25,3 +25,19 @@ canvas { width: 100%; max-width: 100%; height: auto; display: block; margin: 0 a
 video, iframe { width: 100%; max-width: 800px; aspect-ratio: 16 / 9; height: auto; display: block; margin: 0 auto; border: 0; }
 footer { text-align: center; padding: 1rem 0; background: #333; color: #fff; margin-top: 2rem; }
 .bibliography { font-size: 0.9em; border-top: 1px solid #ccc; padding-top: 1rem; margin-top: 2rem; }
+.avance2-page { width: 90%; max-width: 960px; margin: 2rem auto; padding: 1.5rem; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.avance2-page section { margin: 1.5rem 0; }
+.avance2-equation { overflow-x: auto; padding: 1rem; background: #e9ecef; border-left: 4px solid #0056b3; font-family: 'Courier New', Courier, monospace; }
+.avance2-chart { padding: 1rem; background: #fff; border: 1px solid #d5dce3; border-radius: 8px; }
+.avance2-chart canvas { height: 360px !important; }
+.avance2-note { color: #4b5563; font-size: 0.92rem; }
+.avance2-simulation { padding: 1rem; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; }
+.avance2-simulation canvas { height: auto; aspect-ratio: 900 / 420; background: #fff; border: 1px solid #cbd5e1; }
+.avance2-controls { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.avance2-controls input[type="range"] { width: min(260px, 80vw); }
+.avance2-diagram { display: block; width: 100%; max-width: 820px; height: auto; margin: 1rem auto; }
+.avance2-page .status-message[hidden] { display: none; }
+@media (max-width: 600px) {
+    .avance2-page { width: auto; margin: 1rem; padding: 1rem; }
+    .avance2-chart canvas { height: 300px !important; }
+}

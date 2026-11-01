@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 6 — Frenado regenerativo en un vehículo eléctrico</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Portafolio de Evidencias - Física I</h1>
+        <p>Aplicaciones de Física</p>
+    </header>
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="tema1.html">1. Rastreo y navegación de un dron de reparto</a>
+        <a href="tema2.html">2. El salto del personaje y la gravedad</a>
+        <a href="tema3.html">3. Gravedad artificial por rotación</a>
+        <a href="tema4.html">4. Llantas de Fórmula 1: temperatura y agarre</a>
+        <a href="tema5.html">5. Resorte virtual en un control háptico</a>
+        <a href="tema6.html">6. Frenado regenerativo en un vehículo eléctrico</a>
+        <a href="tema7.html">7. El coeficiente de restitución en un motor de videojuego</a>
+        <a href="tema8.html">8. Ruedas de reacción: cómo un satélite se gira sin empujarse contra nada</a>
+        <a href="tema9.html">9. Asistencia gravitatoria: cómo la Voyager ganó velocidad sin gastar combustible</a>
+    </nav>
+    <main class="avance2-page">
+        <h2>Tema 6 : Frenado regenerativo en un vehículo eléctrico</h2>
+        <p class="avance2-note"><strong>Programa del curso:</strong> Módulo 2 — Dinámica; trabajo, energía cinética y conservación de la energía mecánica.</p>
+        <section>
+            <h3>(a) Caso de uso en Ingeniería del Software</h3>
+            <p><strong>Sistema real:</strong> el frenado regenerativo de un vehículo eléctrico coordina el motor-generador, el inversor, la batería y el freno hidráulico. Un producto concreto de esta arquitectura es el actuador de freno <strong>Bosch iBooster</strong>; aquí se modela el balance energético de un vehículo genérico, no se atribuyen al producto mediciones o calibraciones no publicadas.</p>
+            <p>El teorema trabajo-energía y la energía cinética relacionan la variación de rapidez con el trabajo neto:</p>
+            <p class="avance2-equation">K = ½mv²; &nbsp; ΔK = K<sub>f</sub> − K<sub>i</sub> = W<sub>neto</sub></p>
+            <p>El motor-generador aplica un torque magnético regenerativo; en el modelo traslacional, la fuerza externa de frenado equivalente que la calzada ejerce sobre las llantas apunta en sentido opuesto al desplazamiento y realiza trabajo negativo. Si se aísla ese trabajo, <span class="avance2-equation">W<sub>frenado</sub> = ΔK = K<sub>f</sub> − K<sub>i</sub> &lt; 0</span>. La energía no desaparece: se transforma en energía eléctrica almacenada y energía térmica/disipada, de acuerdo con la conservación de la energía.</p>
+            <p>Durante el frenado, la energía cinética que disminuye se transforma en energía recuperada en la batería y energía disipada. Para el modelo:</p>
+            <p class="avance2-equation">K<sub>i</sub> − K(t) = E<sub>rec</sub>(t) + E<sub>dis</sub>(t); &nbsp; E<sub>rec</sub> = η[K<sub>i</sub> − K(t)]</p>
+            <p><strong>Ventaja y costo de modelarlo:</strong> un control de lazo cerrado con PID usa el modelo y las lecturas de velocidad para ajustar dinámicamente el torque del motor en milisegundos. Al coordinar la recuperación con el freno por fricción y limitar el deslizamiento, ayuda a evitar el bloqueo de las llantas, a diferencia de valores fijos precalculados que no responden a cambios en adherencia, velocidad o carga de batería. El costo es requerir procesadores de tiempo real, cálculos deterministas y filtrado del ruido de los sensores, además de respetar los límites del motor, inversor y batería.</p>
+            <p><strong>Conexiones:</strong> el torque regenerativo máximo está limitado por la fuerza de fricción estática máxima, <span class="avance2-equation">F<sub>s,máx</sub> = μ<sub>s</sub>N</span>, estudiada en el <a href="tema4.html">Tema 4 (Llantas de Fórmula 1)</a>; si se supera el agarre disponible, la rueda puede deslizar. El balance entre energía inicial y disipación enlaza con las colisiones inelásticas del <a href="tema7.html">Tema 7</a>.</p>
+        </section>
+        <section>
+            <h3>(b) Recurso de apoyo: balance de energía</h3>
+            <p>La simulación usa el tramo de desaceleración de 115 a 125 s del ciclo EPA UDDS (velocidades objetivo registradas cada segundo). Las velocidades originales en mph se convierten a m/s; la masa de 1&nbsp;800 kg y la eficiencia de recuperación del 70 % son supuestos didácticos, no mediciones de un vehículo ni telemetría de frenado regenerativo.</p>
+            <div class="avance2-chart">
+                <canvas id="graficaRegen" role="img" aria-label="Gráfica del cambio de energía cinética, recuperada y disipada durante el frenado"></canvas>
+                <p id="regenChartStatus" class="status-message" role="alert" hidden></p>
+            </div>
+            <p class="avance2-note">La gráfica cumple K<sub>i</sub> − K(t) = E<sub>rec</sub>(t) + E<sub>dis</sub>(t) en todos los puntos. Las velocidades provienen del ciclo de ensayo EPA; las energías son resultados calculados con la masa y la eficiencia supuestas, no mediciones de frenado regenerativo de un vehículo.</p>
+            <p class="avance2-note"><strong>Fuentes de la figura (APA):</strong> U.S. Environmental Protection Agency. (s. f.). <em>Dynamometer drive schedules: Urban Dynamometer Driving Schedule (UDDS)</em> [Base de datos; velocidad objetivo por segundo, t = 115–125 s]. Recuperado el 31 de octubre de 2026, de https://www.epa.gov/sites/default/files/2015-10/uddscol.txt. La energía y los valores recuperados/disipados son cálculos propios con m = 1&nbsp;800 kg y η = 0,70. Para el marco físico: OpenStax. (s. f.). <em>College Physics 2e: 7.2 Kinetic Energy and the Work-Energy Theorem</em>. https://openstax.org/books/college-physics-2e/pages/7-2-kinetic-energy-and-the-work-energy-theorem; U.S. Department of Energy, Alternative Fuels Data Center. (s. f.). <em>All-electric vehicles</em>. https://afdc.energy.gov/vehicles/electric-basics-ev</p>
+        </section>
+    </main>
+    <footer><p>&copy; 2026 Josue Antonio Morales Quirós - Física I (FUN-18)</p></footer>
+    <script src="../js/tema6.js"></script>
+</body>
+</html>

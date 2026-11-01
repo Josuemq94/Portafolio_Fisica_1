@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 7 — El coeficiente de restitución en un motor de videojuego</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Portafolio de Evidencias - Física I</h1>
+        <p>Aplicaciones de Física</p>
+    </header>
+    <nav>
+        <a href="../index.html">Inicio</a>
+        <a href="tema1.html">1. Rastreo y navegación de un dron de reparto</a>
+        <a href="tema2.html">2. El salto del personaje y la gravedad</a>
+        <a href="tema3.html">3. Gravedad artificial por rotación</a>
+        <a href="tema4.html">4. Llantas de Fórmula 1: temperatura y agarre</a>
+        <a href="tema5.html">5. Resorte virtual en un control háptico</a>
+        <a href="tema6.html">6. Frenado regenerativo en un vehículo eléctrico</a>
+        <a href="tema7.html">7. El coeficiente de restitución en un motor de videojuego</a>
+        <a href="tema8.html">8. Ruedas de reacción: cómo un satélite se gira sin empujarse contra nada</a>
+        <a href="tema9.html">9. Asistencia gravitatoria: cómo la Voyager ganó velocidad sin gastar combustible</a>
+    </nav>
+    <main class="avance2-page">
+        <h2>Tema 7 : El coeficiente de restitución en un motor de videojuego</h2>
+        <p class="avance2-note"><strong>Programa del curso:</strong> Módulo 3 — Leyes de conservación; momento lineal y colisiones elásticas e inelásticas.</p>
+        <section>
+            <h3>(a) Caso de uso en Ingeniería del Software</h3>
+            <p><strong>Sistema real:</strong> motores de física como <strong>Box2D</strong> y <strong>NVIDIA PhysX</strong> resuelven contactos entre cuerpos para juegos y simulaciones. El coeficiente de restitución parametriza cuánto de la rapidez relativa normal se conserva durante un impacto.</p>
+            <p class="avance2-equation">e = −(v<sub>2f</sub> − v<sub>1f</sub>)/(v<sub>2i</sub> − v<sub>1i</sub>) &nbsp; (colisión unidimensional)</p>
+            <p>Para una pelota contra un suelo fijo, el suelo tiene masa infinita y v<sub>suelo</sub> = 0; la ecuación se reduce a <span class="avance2-equation">v<sub>f</sub> = −e · v<sub>i</sub></span>. La energía cinética normal conservada por impacto es K<sub>f</sub>/K<sub>i</sub> = e². En una colisión inelástica (e &lt; 1) no se conserva la energía cinética (K<sub>i</sub> ≠ K<sub>f</sub>): parte se transforma en energía interna, deformación y calor. Si se desprecia el rozamiento del aire, la altura del rebote n es h<sub>n</sub> = e<sup>2n</sup>h<sub>0</sub>.</p>
+            <p><strong>Ventaja y costo de modelarlo:</strong> un valor de e permite interacciones dinámicas con superficies distintas; una animación precalculada no responde físicamente a un contacto inesperado. La simulación discreta puede producir <em>jittering</em> (temblor por correcciones repetidas de penetración) o <em>tunneling</em> (un cuerpo rápido traspasa la geometría entre pasos). Un motor robusto puede necesitar Detección Continua de Colisiones (CCD), que calcula el instante de impacto, y un umbral de reposo (<em>sleep threshold</em>) para detener cálculos cuando la velocidad es mínima. Estos algoritmos aumentan el costo de cómputo.</p>
+            <p><strong>Conexiones:</strong> entre rebotes se aplica la caída libre del <a href="tema2.html">Tema 2</a>; la fracción de energía que no se conserva enlaza con la disipación del <a href="tema6.html">Tema 6</a>.</p>
+        </section>
+        <section>
+            <h3>(b) Recurso de apoyo: simulación interactiva</h3>
+            <p>Arrastre el control para cambiar e. La pelota (masa ilustrativa de 1 kg) integra posición y velocidad en cada fotograma; el lienzo actualiza en joules la energía cinética vertical perdida en cada impacto y muestra la fracción conservada, e². Entre impactos, la gravedad intercambia energía cinética y potencial. La simulación usa e entre 0 y 1, intervalo de choques pasivos entre superficies.</p>
+            <div class="avance2-simulation">
+                <div class="avance2-controls">
+                    <label for="sliderE"><strong>Coeficiente de restitución e:</strong> <output id="valE">0,75</output></label>
+                    <input type="range" id="sliderE" min="0" max="1" step="0.05" value="0.75">
+                    <button id="btnReset" type="button">Soltar de nuevo</button>
+                </div>
+                <p id="estadoRebote" aria-live="polite"></p>
+                <canvas id="canvasRebote" width="900" height="420" role="img" aria-label="Simulación en vivo de una pelota que rebota con gráfica de energía cinética normal perdida en cada impacto y porcentaje conservado"></canvas>
+                <p id="bounceStatus" class="status-message" role="alert" hidden></p>
+            </div>
+            <p class="avance2-note"><strong>Fuente:</strong> documentación de <a href="https://box2d.org/documentation/md_simulation.html" target="_blank" rel="noopener noreferrer">Box2D, simulación de cuerpos rígidos y contactos</a>. La pelota y los parámetros son una simulación didáctica, no telemetría de un videojuego.</p>
+        </section>
+    </main>
+    <footer><p>&copy; 2026 Josue Antonio Morales Quirós - Física I (FUN-18)</p></footer>
+    <script src="../js/tema7.js"></script>
+</body>
+</html>
